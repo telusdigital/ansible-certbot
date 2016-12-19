@@ -1,6 +1,7 @@
 ---
 certbot_domain: "{{ system_role }}.{{ project }}-{{ environment_tier }}.{{ domain }}"
 certbot_agree_tos: yes
+certbot_keep_until_expiring: yes
 certbot_email: "webmaster@{{ domain }}"
 certbot_source: /opt/cert-bot
 

@@ -15,7 +15,7 @@
 
 - name: request signed certificate
   sudo: no
-  shell: "{{ certbot_source }}/certbot-auto certonly --standalone --non-interactive {% if certbot_agree_tos %} --agree-tos {% endif %} {% if certbot_email %} --email {{ certbot_email }} {% endif %} -d {{ certbot_domain }}"
+  shell: "{{ certbot_source }}/certbot-auto certonly --standalone --non-interactive {% if certbot_keep_until_expiring %} --keep-until-expiring {% endif } {% if certbot_agree_tos %} --agree-tos {% endif %} {% if certbot_email %} --email {{ certbot_email }} {% endif %} -d {{ certbot_domain }}"
   when: (not certbot_certificate_exists.stdout | bool or certbot_expires_in.stdout is defined and certbot_expires_in.stdout | int < 2592000) and not certbot_dry_run
 
 - name: request signed certificate | DRY RUN
