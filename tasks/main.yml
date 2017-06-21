@@ -71,5 +71,5 @@
     name: run certbot renewal script daily
     minute: 0
     hour: 19
-    job: certbot renew --post-hook "service {{ certbot_web_server }} reload" --webroot -w {{ certbot_path }} -d {{ certbot_domain }}
+    job: "{{ certbot_source }}/certbot renew --pre-hook 'service {{ certbot_web_server }} stop' --post-hook 'service {{ certbot_web_server }} start' --webroot -w {{ certbot_path }} -d {{ certbot_domain }}"
     user: root
